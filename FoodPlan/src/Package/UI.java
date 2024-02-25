@@ -6,10 +6,15 @@ public class UI {
 
 	private Scanner scan;
 	
+	private accountManager manager;
+	private account current;
+	
 	//Costruttore
 	UI()
 	{
 		scan = new Scanner(System.in);
+		manager = new accountManager();
+		current = new account("Prova", "prova");
 	}
 
 	//Start
@@ -35,10 +40,10 @@ public class UI {
 		switch(input)
 		{
 		case 1:
-			//logIn();
+			logIn();
 			break;
 		case 2:
-			//singUp();
+			singUp();
 			break;
 		default:
 			System.out.println("The input is not correct");
@@ -49,13 +54,24 @@ public class UI {
 	
 	void singUp()
 	{
-		
+		manager.addUsername();
+		accountOptions();
 	}
 
 	
 	void logIn()
 	{
+		current = manager.access();
 		
+		if(current != null)
+		{
+			System.out.println("Welcome "+current.getUser());
+		}
+		else
+		{
+			System.out.println("Account not found");
+			logIn();
+		}
 	}
 	
 	void accountOptions()
