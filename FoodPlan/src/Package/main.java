@@ -4,7 +4,7 @@ public class main {
 
 	
 	
-	public static void Main(String[] args) {
+	public static void main(String[] args) {
 		
 		//Dichiarazione oggetto UI
 		UI system = new UI();
