@@ -23,8 +23,26 @@ public class dietManager {
 	{
 		current = account;
 		
-		System.out.println("Create/Modify Diet");
+		System.out.println("Select a funcion:");
+		System.out.println("1- List Days");
+		System.out.println("2- Calculate the money spent and food's quantity");
+		System.out.println("3- Back");
 		
+		int x = scan.nextInt();
+		scan.nextLine();
+		
+		if(x == 1 || x == 2)
+		{
+			System.out.println("Are you interested on a single day or a raw of days?");
+			System.out.println("1- Single");
+			System.out.println("2- Raw");
+			int y = scan.nextInt();
+			scan.nextLine();
+			
+			ListDays(current, y);
+		}
+			
+	
 	}	
 	
 	void addDay(account curr)
@@ -199,6 +217,49 @@ public class dietManager {
 			System.out.println("The input is not correct");
 			endRemovingOnDays(current, i);
 		}
+	}
+	
+	void ListDays(account curr, int op)
+	{
+		if(op == 1)
+		{
+			System.out.println("Type the number of the day");
+		}
+		else if(op == 2)
+			System.out.println("Type the number of days (from now to N days ago)");
+		
+		
+		for(int i = 0; i<curr.getDays().size(); i++)
+		{
+			for(int k = 0; k < curr.getDays().get(i).getAlimenti().size(); k++)
+			{
+				System.out.println(" - "+ curr.getDays().get(i).getAlimenti().get(k).getName());
+				System.out.println(curr.getDays().get(i).getAlimenti().get(k).getQuantity()+ " grams");
+			}
+		}
+		
+		int num = scan.nextInt();
+		scan.nextLine();
+		
+		if(num <= curr.getDays().size() && num > 0)
+		{
+			float money = 0, quant = 0;
+			
+			if(op == 1)
+			{
+				System.out.println("Calcolo soldi spesi e quantita");
+				//for(int k = 0; k<curr.getDays().get(num).getAlimenti().size(); k++)
+				{
+					//money+=curr.getDays().get(num).getAlimenti().get(k).getCost();
+					
+					//quant+=curr.getDays().get(num).getAlimenti().get(k).getQuantity();
+					//System.out.println(" - "+ curr.getDays().get(num).getAlimenti().get(k).getName());
+					//System.out.println(curr.getDays().get(num).getAlimenti().get(k).getQuantity()+ " grams");
+				}
+			}
+		}
+		else
+			System.out.println("Number of days not correct");
 	}
 	
 	food getFood()
