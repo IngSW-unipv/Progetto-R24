@@ -62,7 +62,7 @@ public class accountManager {
 			account count = new account(username, psw);
 			users.add(count);
 			System.out.println("Your account has been created");
-			listAccount();
+			//listAccount();
 		}
 		else
 		{
