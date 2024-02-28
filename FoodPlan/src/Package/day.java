@@ -14,16 +14,14 @@ public class day {
 	}
 	int getNum(){return number;}
 	
-	boolean addFood(food food)
+	void addFood(food food)
 	{
-		for(int i = 0; i<alimenti.size(); i++)
-		{
-			if((food.getName().equals(alimenti.get(i).getName())))
-			{
-				return false;
-			}
-		}
-		return true;
+		alimenti.add(food);
+	}
+	
+	void removeFood(food food)
+	{
+		alimenti.remove(food);
 	}
 	
 	void ListDay()
@@ -35,5 +33,10 @@ public class day {
 			System.out.println(alimenti.get(i).getCost());
 			System.out.println();
 		}
+	}
+
+	ArrayList<food> getAlimenti()
+	{
+		return alimenti;
 	}
 }

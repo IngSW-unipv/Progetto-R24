@@ -55,14 +55,12 @@ public class UI {
 		}
 	}
 	
-	
 	void singUp()
 	{
 		manager.addUsername();
 		accountOptions();
 	}
 
-	
 	void logIn()
 	{
 		current = manager.access();
@@ -81,7 +79,7 @@ public class UI {
 	void accountOptions()
 	{
 		System.out.println("1 - Create/Modify Day");
-		System.out.println("2 - Diet");
+		System.out.println("2 - Calculator");
 		System.out.println("3 - Edit Food List");
 		
 		int input = scan.nextInt();
@@ -111,8 +109,10 @@ public class UI {
 	{
 		System.out.println("1 - Create Day");
 		System.out.println("2 - Modify Day");
+		
 		int sel = scan.nextInt();
 		scan.nextLine();
+		
 		if(sel == 1)
 			dtManager.addDay(current);
 		else if(sel == 2)

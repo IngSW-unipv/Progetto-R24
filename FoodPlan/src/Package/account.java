@@ -42,6 +42,7 @@ public class account {
 		
 		return true;
 	}
+	
 	boolean removeFood(String name)
 	{
 		if(foods != null)
@@ -59,19 +60,28 @@ public class account {
 		System.out.println("The food you inserted does not exist");
 		return false;
 	}
+	
 	int addDay(day day)
 	{
 		days.add(day);
 		return days.size();
 	}
 	
+	void listDay(int dayIndex)
+	{
+		days.get(dayIndex).ListDay();
+	}
+	
 	ArrayList<day> getDays(){return days;}
+	
 	String getUser(){
 		return username;
 	}
+	
 	String getPsw(){
 		return psw;
 	}
+	
 	ArrayList<food> getFoods()
 	{
 		return foods;
