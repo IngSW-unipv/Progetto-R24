@@ -91,15 +91,7 @@ public class UI {
 		switch(input)
 		{
 		case 1:
-			System.out.println("1 - Create Day");
-			System.out.println("2 - Modify Day");
-			int sel = scan.nextInt();
-			scan.nextLine();
-			if(sel == 1)
-				dtManager.addDay(current);
-			else if(sel == 2)
-				dtManager.selectDay(current);
-			
+			actionsOnDays();
 			accountOptions();
 		break;
 		case 2:
@@ -111,8 +103,20 @@ public class UI {
 			break;
 		default:
 			System.out.println("Incorrect input");
-			start();
+			accountOptions();
 		}
+	}
+	
+	void actionsOnDays()
+	{
+		System.out.println("1 - Create Day");
+		System.out.println("2 - Modify Day");
+		int sel = scan.nextInt();
+		scan.nextLine();
+		if(sel == 1)
+			dtManager.addDay(current);
+		else if(sel == 2)
+			dtManager.selectDay(current);
 	}
 	
 	void editFoodList()
@@ -120,6 +124,8 @@ public class UI {
 		System.out.println("1 - Create New Food");
 		System.out.println("2 - Remove Existing Food");
 		System.out.println("3 - Edit Existing Food");
+		System.out.println("4 - List the Foods");
+		System.out.println("5 - Back");
 		int sel = scan.nextInt();
 		scan.nextLine();
 		if(sel == 1)
@@ -128,5 +134,9 @@ public class UI {
 			fdManager.removeFood(current);
 		else if(sel == 3)
 			fdManager.editFood(current);
+		else if(sel == 4)
+			fdManager.listFoods(current);
+		else if(sel == 5)
+			return;
 	}
 }

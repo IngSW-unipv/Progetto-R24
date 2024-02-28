@@ -86,4 +86,17 @@ public class foodManager {
 		
 	}
 
+	void listFoods(account curr)
+	{
+		if(curr.getFoods().size() > 0) 
+		{
+			for(int i = 0; i<curr.getFoods().size(); i++)
+			{
+				System.out.print("- " + curr.getFoods().get(i).getName());
+				System.out.println(" " + curr.getFoods().get(i).getCost());
+			}
+		}
+		else 
+			System.out.println("Your Food List is Empty");
+	}
 }
