@@ -37,26 +37,27 @@ public class dietManager {
 	
 	void selectDay(account curr)
 	{
-		ArrayList<day> _days = curr.getDays();
 		int j;
 		
-		if(_days.size()>0)
+		if(curr.getDays().size()>0)
 		{
 			System.out.println("Insert the number of the day to select:");
-			for(int i = 0; i<_days.size(); i++)
+			for(int i = 0; i<curr.getDays().size(); i++)
 			{
 				j = i+1;
 				System.out.println("Day "+j);
-				for(int k = 0; k < _days.get(i).getAlimenti().size(); k++)
+				
+				for(int k = 0; k < curr.getDays().get(i).getAlimenti().size(); k++)
 				{
-					System.out.println(" - "+ _days.get(i).getAlimenti().get(k).getName());
+					System.out.println(" - "+ curr.getDays().get(i).getAlimenti().get(k).getName());
 				}
 			}
 			
 			int input = scan.nextInt();
 			scan.nextLine();
 			
-			if(input<=_days.size())
+			
+			if(input<=curr.getDays().size())
 			{
 				System.out.println("1- Add Foods");
 				System.out.println("2- Remove Foods");
@@ -74,7 +75,7 @@ public class dietManager {
 			}
 		}
 		else
-			System.out.println("Your day's List is empty");
+			System.out.println("Your List of Days is empty");
 	}
 	
 	void modifyDay(account curr, int dayNumber, int mode)
@@ -94,6 +95,9 @@ public class dietManager {
 						System.out.println("Food Added Correctly");
 						endAddingOnDays(curr, dayNumber);
 					}
+					else
+						System.out.println("Error");
+					
 				}
 			}
 			else
@@ -104,26 +108,34 @@ public class dietManager {
 		}
 		else if(mode == 2)
 		{
-			for(int k = 0; k < curr.getDays().get(dayNumber).getAlimenti().size(); k++)
+			if(curr.getDays().get(dayNumber).getAlimenti().size() > 0)
 			{
-				System.out.println(" - "+ curr.getDays().get(dayNumber).getAlimenti().get(k).getName());
-				
-				System.out.println("Insert the name of the food you want to remove:");
-				
-				String foodName = scan.nextLine();
-				
-				for(int i = 0; i<curr.getFoods().size(); i++)
+				for(int k = 0; k < curr.getDays().get(dayNumber).getAlimenti().size(); k++)
 				{
-					if((foodName.equals(curr.getDays().get(dayNumber).getAlimenti().get(i).getName())))
-					{
-						curr.getDays().get(i).removeFood(curr.getFoods().get(i));
-						System.out.println("Food Removed Correctly");
-						endRemovingOnDays(curr, dayNumber);
-						return;
-					}
-				}
-				System.out.println("Your Food Name does Not Exist");
+					System.out.println(" - "+ curr.getDays().get(dayNumber).getAlimenti().get(k).getName());
 				
+					System.out.println("Insert the name of the food you want to remove:");
+				
+					String foodName = scan.nextLine();
+				
+				
+					for(int i = 0; i<curr.getFoods().size(); i++)
+					{
+						if((foodName.equals(curr.getDays().get(dayNumber).getAlimenti().get(i).getName())))
+						{
+							curr.getDays().get(i).removeFood(curr.getFoods().get(i));
+							System.out.println("Food Removed Correctly");
+							endRemovingOnDays(curr, dayNumber);
+							return;
+						}
+					}
+					System.out.println("Your Food Name does Not Exist");
+				}
+			}
+			else
+			{
+				System.out.println("Your food List of this day is empty");
+				System.out.println("You must have at least one food to remove foods");
 			}
 		}
 	}
@@ -136,7 +148,7 @@ public class dietManager {
 		
 		int input = scan.nextInt();
 		
-		//Per evitare un errore con la funzione scan.nextFloat();
+		//Per evitare un errore con la funzione scan.nextInt();
 		scan.nextLine();
 	
 		switch(input)
@@ -145,7 +157,6 @@ public class dietManager {
 			modifyDay(curr, i, 1);
 			break;
 		case 2:
-			System.out.println("Bella");
 			return;
 		default:
 			System.out.println("The input is not correct");

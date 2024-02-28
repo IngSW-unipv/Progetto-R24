@@ -81,6 +81,7 @@ public class UI {
 		System.out.println("1 - Create/Modify Day");
 		System.out.println("2 - Calculator");
 		System.out.println("3 - Edit Food List");
+		System.out.println("4 - Log Out");
 		
 		int input = scan.nextInt();
 		
@@ -98,6 +99,11 @@ public class UI {
 		case 3:
 			editFoodList();
 			accountOptions();
+			break;
+		case 4:
+			current = null;
+			System.out.println("You Logged Out");
+			start();
 			break;
 		default:
 			System.out.println("Incorrect input");
