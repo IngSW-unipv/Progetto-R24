@@ -33,9 +33,11 @@ public class dietManager {
 		int num = curr.addDay(day);
 		
 		System.out.println("Day "+ num +" created");
+		
+		modifyDay(curr, num);
 	}
 	
-	void modifyDay(account curr)
+	void selectDay(account curr)
 	{
 		ArrayList<day> _days = curr.getDays();
 		int j;
@@ -60,9 +62,12 @@ public class dietManager {
 			{
 				float quant = addQuantity();
 				if(quant>0)
+				{
 					curr.getDays().get(dayNumber).addFood(curr.getFoods().get(i));
+					System.out.println("Alimento Aggiunto Correttamente");
+					return;
+				}
 			}
-		
 	}
 	/*
 	 * Food food = getFood();

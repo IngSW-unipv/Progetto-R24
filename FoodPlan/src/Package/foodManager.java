@@ -14,7 +14,7 @@ public class foodManager {
 	}
 	
 	//Funzione per aggiungere un nuovo alimento
-	boolean addFood(account current)
+	void addFood(account current)
 	{
 		//Inserimento del nome e del prezzo
 		System.out.println("Insert Food Name: ");
@@ -33,13 +33,11 @@ public class foodManager {
 			addFood(current);
 		}
 		
-		if(!endAddingFood(current))
-			return true;
-		else 
-			return false;
+		endAddingFood(current);
+		return;
 	}
 	
-	boolean endAddingFood(account current)
+	void endAddingFood(account current)
 	{
 		System.out.println("Would you continue adding foods?");
 		System.out.println("1 - Yes");
@@ -56,11 +54,36 @@ public class foodManager {
 			addFood(current);
 			break;
 		case 2:
-			return false;
+			return;
 		default:
 			System.out.println("The input is not correct");
 			endAddingFood(current);
 		}
-		return true;
 	}
+	
+	void removeFood(account curr)
+	{
+		System.out.println("Insert Food Name: ");
+		String name = scan.nextLine();
+		curr.removeFood(name);
+	}
+	
+	void editFood(account curr)
+	{
+		System.out.println("Select the food to edit");
+		for(int i = 0; i<curr.getFoods().size(); i++)
+		{
+			System.out.print(i+1 + "- " + curr.getFoods().get(i).getName());
+			System.out.println(" " + curr.getFoods().get(i).getCost());
+		}
+		int sel = scan.nextInt();
+		scan.nextLine();
+		
+		System.out.println("Type again the name and the cost of the food");
+		addFood(curr);
+		curr.getFoods().remove(sel);
+		System.out.println("Your food has been modified correctly");
+		
+	}
+
 }

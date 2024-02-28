@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class account {
 	
+	private String name;
+	private String surname;
+	private String email;
 	private String username;
 	private String psw;
 	private ArrayList<food> foods;
@@ -25,6 +28,7 @@ public class account {
 			{
 				if(name.equalsIgnoreCase(foods.get(i).getName()))
 				{
+					System.out.println("The food you inserted already exist. Try again");	
 					return false;
 				}
 			}
@@ -38,7 +42,23 @@ public class account {
 		
 		return true;
 	}
-	
+	boolean removeFood(String name)
+	{
+		if(foods != null)
+		{
+			for(int i = 0; i<foods.size(); i++)
+			{
+				if(name.equalsIgnoreCase(foods.get(i).getName()))
+				{
+					foods.remove(i);
+					System.out.println("The food you inserted has been removed.");	
+					return true;
+				}
+			}
+		}
+		System.out.println("The food you inserted does not exist");
+		return false;
+	}
 	int addDay(day day)
 	{
 		days.add(day);
