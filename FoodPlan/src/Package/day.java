@@ -14,9 +14,10 @@ public class day {
 	}
 	int getNum(){return number;}
 	
-	void addFood(food food)
+	void addFood(food food, float quantity)
 	{
-		alimenti.add(food);
+		food newFood = new food(food.getName(), food.getCost(), quantity);
+		alimenti.add(newFood);
 	}
 	
 	void removeFood(food food)

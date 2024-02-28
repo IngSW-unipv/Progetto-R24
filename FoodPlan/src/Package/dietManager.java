@@ -50,6 +50,7 @@ public class dietManager {
 				for(int k = 0; k < curr.getDays().get(i).getAlimenti().size(); k++)
 				{
 					System.out.println(" - "+ curr.getDays().get(i).getAlimenti().get(k).getName());
+					System.out.println(curr.getDays().get(i).getAlimenti().get(k).getQuantity()+ " grams");
 				}
 			}
 			
@@ -86,19 +87,30 @@ public class dietManager {
 			{
 				System.out.println("Insert the name of the food");
 				String foodName = scan.nextLine();
+				System.out.println("Insert the quantity you should eat (grams)");
+				float quant = scan.nextFloat();
+				scan.nextLine();
 				
 				for(int i = 0; i<curr.getFoods().size(); i++)
 				{
 					if((foodName.equals(curr.getFoods().get(i).getName())))
 					{
-						curr.getDays().get(dayNumber).addFood(curr.getFoods().get(i));
+						curr.getDays().get(dayNumber).addFood(curr.getFoods().get(i), quant);
+						
 						System.out.println("Food Added Correctly");
 						endAddingOnDays(curr, dayNumber);
+						return;
 					}
-					else
-						System.out.println("Error");
-					
 				}
+				System.out.println("The Food Does Not Exist in your Food List");
+				System.out.println("1- Try again");
+				System.out.println("2- Exit");
+				int in = scan.nextInt();
+				scan.nextLine();
+				if(in == 1)
+					modifyDay(curr, dayNumber, mode);
+				else if(in == 2)
+					return;
 			}
 			else
 			{
@@ -113,7 +125,8 @@ public class dietManager {
 				for(int k = 0; k < curr.getDays().get(dayNumber).getAlimenti().size(); k++)
 				{
 					System.out.println(" - "+ curr.getDays().get(dayNumber).getAlimenti().get(k).getName());
-				
+					System.out.println(curr.getDays().get(dayNumber).getAlimenti().get(k).getQuantity()+ " grams");
+					
 					System.out.println("Insert the name of the food you want to remove:");
 				
 					String foodName = scan.nextLine();
