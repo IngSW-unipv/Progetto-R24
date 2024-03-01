@@ -1,5 +1,6 @@
 package Package;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UI {
@@ -18,7 +19,7 @@ public class UI {
 		manager = new accountManager();
 		fdManager = new foodManager();
 		dtManager = new dietManager();
-		current = new account("Prova", "prova");
+		current = new account("Prova", "prova", "prova", "prova");
 	}
 
 	//Start
@@ -36,23 +37,39 @@ public class UI {
 		System.out.println("1- Access");
 		System.out.println("2- Sign up");
 	
-		//Rilevare l'input + risoluzione errore su scan.nextInt()
-		int input = scan.nextInt();
-		scan.nextLine();
-	
-		//Selezione dell'opzione
-		switch(input)
+		try
 		{
-		case 1:
-			logIn();
-			break;
-		case 2:
-			singUp();
-			break;
-		default:
-			System.out.println("The input is not correct");
+			//Rilevare l'input + risoluzione errore su scan.nextInt()
+			int input = scan.nextInt();
+			scan.nextLine();
+	
+			//Selezione dell'opzione
+			switch(input)
+			{
+			case 1:
+				logIn();
+				break;
+			case 2:
+				singUp();
+				break;
+			default:
+				System.out.println("The input is not correct");
+				accessOptions();
+			}
+		}
+		catch(InputMismatchException e)
+		{
+			System.out.println("The Input is not correct");
+			scan.nextLine();
 			accessOptions();
 		}
+		catch(Exception e)
+		{
+			System.out.println("The Input is not correct");
+			scan.nextLine();
+			accessOptions();
+		}
+		
 	}
 	
 	void singUp()
@@ -95,6 +112,7 @@ public class UI {
 		break;
 		case 2:
 			dtManager.dietOptions(current);
+			accountOptions();
 			break;
 		case 3:
 			editFoodList();

@@ -14,7 +14,7 @@ public class dietManager {
 	dietManager ()
 	{
 		index = 0;
-		current = new account("example", "example");
+		current = new account("example", "example", "example", "example");
 		scan = new Scanner (System.in);
 	}
 	
@@ -31,7 +31,20 @@ public class dietManager {
 		int x = scan.nextInt();
 		scan.nextLine();
 		
-		if(x == 1 || x == 2)
+		if(x==1)
+		{
+			for(int i = 0; i<current.getDays().size(); i++)
+			{
+				for(int k = 0; k < current.getDays().get(i).getAlimenti().size(); k++)
+				{
+					System.out.println("Day " + k+1);
+					System.out.println(" - "+ current.getDays().get(i).getAlimenti().get(k).getName());
+					System.out.println(current.getDays().get(i).getAlimenti().get(k).getQuantity()+ " grams");
+				}
+			}
+			return;
+		}
+		else if(x == 2)
 		{
 			System.out.println("Are you interested on a single day or a raw of days?");
 			System.out.println("1- Single");
@@ -233,6 +246,7 @@ public class dietManager {
 		{
 			for(int k = 0; k < curr.getDays().get(i).getAlimenti().size(); k++)
 			{
+				System.out.println("Day " + k+1);
 				System.out.println(" - "+ curr.getDays().get(i).getAlimenti().get(k).getName());
 				System.out.println(curr.getDays().get(i).getAlimenti().get(k).getQuantity()+ " grams");
 			}
@@ -241,25 +255,32 @@ public class dietManager {
 		int num = scan.nextInt();
 		scan.nextLine();
 		
-		if(num <= curr.getDays().size() && num > 0)
+		ArrayList<food> container = new ArrayList<food>();
+		
+		if(num <= curr.getDays().size() && num >=0)
 		{
 			float money = 0, quant = 0;
+			num = num-1;
 			
 			if(op == 1)
 			{
-				System.out.println("Calcolo soldi spesi e quantita");
-				//for(int k = 0; k<curr.getDays().get(num).getAlimenti().size(); k++)
+				for(int k = 0; k<curr.getDays().get(num).getAlimenti().size(); k++)
 				{
-					//money+=curr.getDays().get(num).getAlimenti().get(k).getCost();
-					
-					//quant+=curr.getDays().get(num).getAlimenti().get(k).getQuantity();
-					//System.out.println(" - "+ curr.getDays().get(num).getAlimenti().get(k).getName());
-					//System.out.println(curr.getDays().get(num).getAlimenti().get(k).getQuantity()+ " grams");
+					money = money + curr.getDays().get(num).getAlimenti().get(k).getCost()*(curr.getDays().get(num).getAlimenti().get(k).getQuantity()/1000);
+					quant=curr.getDays().get(num).getAlimenti().get(k).getQuantity();
+					System.out.println(curr.getDays().get(num).getAlimenti().get(k).getName() + " " + quant);
+					//System.out.println(" - "+ curr.getDays().get(num-1).getAlimenti().get(k).getName());
+					//System.out.println(curr.getDays().get(num-1).getAlimenti().get(k).getQuantity()+ " grams");
 				}
+				System.out.println("Your total money spent is: " + money + "$");
 			}
 		}
 		else
+		{
 			System.out.println("Number of days not correct");
+			return;
+		}
+			
 	}
 	
 	food getFood()

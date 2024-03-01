@@ -21,9 +21,9 @@ public class accountManager {
 	accountManager()
 	{
 		val = new validatorPsw();
-		_admin = new account("Elian", "ADmin00");
+		_admin = new account("Elian", "ADmin00", "Elian", "Pastorino");
 		users.add(_admin);
-		_admin2 = new account("Hannah", "GG1ers");
+		_admin2 = new account("Hannah", "GG1ers", "Hannah", "Devine");
 		users.add(_admin2);
 	}
 	
@@ -43,23 +43,27 @@ public class accountManager {
 		
 	void addUsername()
 	{
+		System.out.println("Inserire il nome: ");
+		String name = scan.next();
+		System.out.println("Inserire il cognome: ");
+		String surname = scan.next();
 		System.out.println("Inserire username: ");
 		String username = scan.next();
-		addPassword(username);
+		addPassword(username, name, surname);
 	}
-	void addPassword(String username)
+	void addPassword(String username, String name, String surname)
 	{
 		System.out.println("Enter your password: ");
 		System.out.println("(The password has to include at least 2 uppercase letters, 3 lowercase letters and 1 digit)");
 		String psw = scan.next();
-		addAccount(username, psw);
+		addAccount(username, psw, name, surname);
 	}
 	
-	void addAccount(String username, String psw)
+	void addAccount(String username, String psw, String name, String surname)
 	{
 		if(val.check(psw))
 		{
-			account count = new account(username, psw);
+			account count = new account(username, psw, name, surname);
 			users.add(count);
 			System.out.println("Your account has been created");
 			//listAccount();
@@ -67,7 +71,7 @@ public class accountManager {
 		else
 		{
 			System.out.println("Try again");
-			addPassword(username);
+			addPassword(username, name, surname);
 		}
 	}
 	

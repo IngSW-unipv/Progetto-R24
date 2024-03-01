@@ -9,7 +9,7 @@ public class main {
 		//Dichiarazione oggetto UI
 		UI system = new UI();
 		
-		System.out.println("Welcome");
+		System.out.println("Welcome to FoodPlan!");
 		
 		//Inizio del programma
 		system.start();

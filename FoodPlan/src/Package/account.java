@@ -12,10 +12,11 @@ public class account {
 	private ArrayList<food> foods;
 	private ArrayList<day> days;
 	
-	account(String _username, String _psw)
+	account(String _username, String _psw, String _name, String _surname)
 	{
 		this.username = _username;
 		this.psw = _psw;
+		this.name = _name;
 		foods = new ArrayList<food>();
 		days = new ArrayList<day>();
 	}
